@@ -8,7 +8,6 @@ app.secret_key = "P-TODO-APP"
 @app.route("/")
 def home():
     todo_list = session.get("todo_list") or [] # If the list is not in session the empty list
-    print(todo_list)
 
     # Checking for list filter request
     filter = request.args.get("filter") or "default"

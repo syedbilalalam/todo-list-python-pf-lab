@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tab icon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.png') }}" type="image/x-icon">
     <!-- Importing tailwind css -->
-    <script src="static/tailwind@4.js"></script>
+    <script src="{{ url_for('static', filename='tailwind@4.js') }}"></script>
     <title>Personal Task Manager</title>
 </head>
 
@@ -71,7 +73,7 @@
                     {% else %}
                     {% if todo_list[i]["completed"] %}
                     <span class="mr-4 line-through text-gray-500">
-                        {{ todo_list[i]['completed'] }}
+                        {{ todo_list[i]['name'] }}
                     </span>
                     {% else %}
                     <span class="mr-4">
