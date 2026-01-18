@@ -66,7 +66,7 @@
 
                     <input type="hidden" name="index" value="{{ i }}" />
                     <input type="text" class="border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
-                        name="value" value="{{ todo_list[i]['name'] }}" />
+                        name="value" value="{{ todo_list[i]['name'] }}" autofocus />
 
                     {% else %}
                     {% if todo_list[i]["completed"] %}
@@ -107,33 +107,28 @@
                         
                     </form>
 
-                    {% if todo_list[i]["completed"] %}
                     
                     <form action="{{url_for('update_completion')}}" method="POST">
                         
+                        {% if todo_list[i]["completed"] %}
                         <button class="text-sm bg-yellow-500 text-white sm:px-2 px-1 py-1 rounded" name="index"
                             value="{{i}}">
 
                             <!-- Cross icon -->
-                            <img src="{{ url_for('static', 'icons/cross.svg') }}" />
+                            <img src="{{ url_for('static', filename='icons/cross.svg') }}" />
 
                         </button>
-                        
-                    </form>
-                    
-                    {% else %}
-                    
-                    <form action="{{url_for('update_completion')}}" method="POST">
+                        {% else %}
                         <button class="text-sm bg-green-500 text-white sm:px-2 px-1 py-1 rounded" name="index"
                             value="{{i}}">
-
+    
                             <!-- Check icon -->
                             <img src="{{ url_for('static', filename='icons/check.svg') }}" />
-
+    
                         </button>
+                        {% endif %}
+                        
                     </form>
-                    
-                    {% endif %}
                     
                 </div>
                 
