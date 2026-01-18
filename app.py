@@ -53,26 +53,6 @@ def add_todo():
 
     return redirect(url_for('home'))
 
-# Route for updating completion status
-@app.route("/update/completion", methods=["POST"])
-def update_completion():
-    todo_list = session.get("todo_list") or [] # fetching todo list from session
-
-    # Fetching index with proper error handling
-    index = None
-    try:
-        index = int(request.form["index"]) # Index of the target element
-    except:
-        return redirect(url_for('home'))
-
-    # Toggling the completion status from completed to not completed or vice versa
-    todo_list[index]["completed"] = not(todo_list[index]["completed"])
-
-    # Saving new list to the session
-    session["todo_list"] = todo_list
-
-    return redirect(url_for('home'))
-
 # Route for deleting a todo
 @app.route("/delete/todo", methods=["POST"])
 def delete_todo():
@@ -134,6 +114,27 @@ def edit_todo():
     session["todo_list"] = todo_list
 
     return redirect(url_for('home'))
+
+# Route for updating completion status
+@app.route("/update/completion", methods=["POST"])
+def update_completion():
+    todo_list = session.get("todo_list") or [] # fetching todo list from session
+
+    # Fetching index with proper error handling
+    index = None
+    try:
+        index = int(request.form["index"]) # Index of the target element
+    except:
+        return redirect(url_for('home'))
+
+    # Toggling the completion status from completed to not completed or vice versa
+    todo_list[index]["completed"] = not(todo_list[index]["completed"])
+
+    # Saving new list to the session
+    session["todo_list"] = todo_list
+
+    return redirect(url_for('home'))
+
 
 # The following command will start the backend in debug mode
 # Debug mode se error dhond ne mea aasani hoti hy
